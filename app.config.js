@@ -1,0 +1,71 @@
+import 'dotenv/config';
+
+export default {
+  expo: {
+    name: "React Map App",
+    slug: "react-map",
+    version: "1.0.0",
+    versionCode: 1,
+    orientation: "default",
+    icon: "./assets/images/icon.png",
+    scheme: "rectmapapp",
+    userInterfaceStyle: "automatic",
+    newArchEnabled: true,
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: "com.hudsom.rectmapapp",
+      config: {
+        googleMapsApiKey: process.env.GOOGLE_MAPS_IOS_API_KEY
+      }
+    },
+    android: {
+      package: "com.hudsom.rectmapapp",
+      icon: "./assets/images/icon.png",
+      edgeToEdgeEnabled: true,
+      predictiveBackGestureEnabled: false,
+      permissions: [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      config: {
+        googleMaps: {
+          apiKey: process.env.GOOGLE_MAPS_ANDROID_API_KEY
+        }
+      }
+    },
+    web: {
+      output: "static",
+      favicon: "./assets/images/favicon.png"
+    },
+    plugins: [
+      "expo-router",
+      [
+        "expo-location",
+        {
+          locationAlwaysAndWhenInUsePermission: "Este app precisa acessar sua localização para mostrar seus locais favoritos no mapa."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          image: "./assets/images/splash-icon.png",
+          imageWidth: 250,
+          resizeMode: "contain",
+          backgroundColor: "#2196F3",
+          dark: {
+            backgroundColor: "#1976D2"
+          }
+        }
+      ]
+    ],
+    experiments: {
+      typedRoutes: true,
+      reactCompiler: true
+    },
+    extra: {
+      eas: {
+        projectId: "244c9efa-e569-429e-8f39-b5a52e528b86"
+      }
+    }
+  }
+};
